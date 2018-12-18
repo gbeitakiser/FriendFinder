@@ -21,5 +21,4 @@ module.exports = function(app) {
           res.json(true); // Will this be true or false?
           // Then add function for compatability logic
       });
-
 };
