@@ -1,16 +1,33 @@
-// I think this is the file where everything runs off of
-
+// Requirements
+//================================
 var express = require("express");
-var path = require("path");
 
+
+
+// Connection Variables
+//================================
 var app = express();
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+
+// Handle Dat Data!
+//================================
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
+
+// Routing
+//================================
+require("./App/Routing/apiRoutes")(app);
+require("./App/Routing/htmlRoutes")(app);
+
+
+
+// Start Connection
+//================================
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
+
