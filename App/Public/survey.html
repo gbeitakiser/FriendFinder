@@ -51,7 +51,7 @@
         <option value="5">Five (Strongly Agree)</option>
       </select>
     </p>
-    <h2>Question 3</h2>
+    <!-- <h2>Question 3</h2>
     <p>You think pineapple should be on pizza</p>
     <p>
       <select class="custom-select-sm input" id="option3">
@@ -146,7 +146,7 @@
         <option value="4">Four</option>
         <option value="5">Five (Strongly Agree)</option>
       </select>
-    </p>
+    </p> -->
       <button type="submit" class="btn btn-primary submit">Submit</button>
     </form>
 </body>
@@ -156,7 +156,7 @@
 <script>
 $(".submit").on("click", function(event) {
     event.preventDefault();
-    console.log("Submit works");
+    // alert("Thank you. Click 'OK' to see your match.");
 
     var newPerson = {
         name: $("#name").val().trim(),
@@ -164,26 +164,26 @@ $(".submit").on("click", function(event) {
         scores: [
             $("#option1").val(),
             $("#option2").val(),
-            $("#option3").val(),
-            $("#option4").val(),
-            $("#option5").val(),
-            $("#option6").val(),
-            $("#option7").val(),
-            $("#option8").val(),
-            $("#option9").val(),
-            $("#option10").val()
+            // $("#option3").val(),
+            // $("#option4").val(),
+            // $("#option5").val(),
+            // $("#option6").val(),
+            // $("#option7").val(),
+            // $("#option8").val(),
+            // $("#option9").val(),
+            // $("#option10").val()
         ]
     };
     
     console.log(newPerson);
 
     $.post("/api/friends", newPerson, function() {
-            console.log("This Works");
+            console.log("Post Works");
             $("#name").val("");
             $("#PhotoLink").val("");
             $(".custom-select-sm").val("");
+            // alert("Your match is...");
         })
-
 });
 
 
