@@ -19,11 +19,16 @@ module.exports = function(app) {
         for (var i = 0; i < req.body.scores.length; i++) {
           newUserArr.push(+req.body.scores[i]);
         };
-
+        //
+        ////
+        //////
+              // Tie index of matched with data for that person
+        //////
+        ////
+        //
 
         // Compatability Checker
         //===============================
-        // function matchUsers() {
           var dbCompatabilityScore = [];
         
           // Loops through each person in database and adds their score to empty var. 
@@ -69,28 +74,12 @@ module.exports = function(app) {
           console.log("\nCompatability Scores: ")
           console.log(dbCompatabilityScore);
           
-        // }
-
-
 
         // Adds respondent data to respondents array in friends.js
         respondents.push(req.body);
           res.json(true); // Will this be true or false? And why do I need it?
       });
 };
-
-
-
-// 6. Determine the user's most compatible friend using the following as a guide:
-
-//    * Convert each user's results into a simple array of numbers (ex: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`).
-//    * With that done, compare the difference between current user's scores against those from other users, question by question. Add up the differences to calculate the `totalDifference`.
-//      * Example:
-//        * User 1: `[5, 1, 4, 4, 5, 1, 2, 5, 4, 1]`
-//        * User 2: `[3, 2, 6, 4, 5, 1, 2, 5, 4, 1]`
-//        * Total Difference: **2 + 1 + 2 =** **_5_**
-//    * Remember to use the absolute value of the differences. Put another way: no negative solutions! Your app should calculate both `5-3` and `3-5` as `2`, and so on.
-//    * The closest match will be the user with the least amount of difference.
 
 // 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 //    * The modal should display both the name and picture of the closest match.

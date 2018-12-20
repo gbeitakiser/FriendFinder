@@ -156,8 +156,6 @@
 <script>
 $(".submit").on("click", function(event) {
     event.preventDefault();
-    // alert("Thank you. Click 'OK' to see your match.");
-
     var newPerson = {
         name: $("#name").val().trim(),
         photoURL: $("#photolink").val().trim(),
@@ -174,15 +172,10 @@ $(".submit").on("click", function(event) {
             // $("#option10").val()
         ]
     };
-    
-    console.log(newPerson);
-
     $.post("/api/friends", newPerson, function() {
-            console.log("Post Works");
             $("#name").val("");
             $("#PhotoLink").val("");
-            $(".custom-select-sm").val("");
-            // alert("Your match is...");
+            $(".custom-select-sm").val("");            
         })
 });
 

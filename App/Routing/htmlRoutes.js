@@ -1,7 +1,8 @@
+// Dependancies
 
 var path = require("path");
 
-
+// Interact with Server
 module.exports = function(app) {
 
     app.get("/", function(req, res) {
