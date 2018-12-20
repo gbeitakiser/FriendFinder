@@ -19,16 +19,11 @@ module.exports = function(app) {
         for (var i = 0; i < req.body.scores.length; i++) {
           newUserArr.push(+req.body.scores[i]);
         };
-        //
-        ////
-        //////
-              // Tie index of matched with data for that person
-        //////
-        ////
-        //
+        
 
         // Compatability Checker
         //===============================
+          var indexOfCompatible;
           var dbCompatabilityScore = [];
         
           // Loops through each person in database and adds their score to empty var. 
@@ -60,20 +55,24 @@ module.exports = function(app) {
             }
             dbCompatabilityScore.push(sum);           
           }
-
           indexOfSmallest(dbCompatabilityScore);
+
           // Checks lowest number in dbCompatabilityScore Array and returns its index
           function indexOfSmallest(a) {
             var lowest = 0;
             for (var i = 1; i < a.length; i++) {
               if (a[i] < a[lowest]) lowest = i;
             }
-            console.log("\n index of? lowest number:")
-            console.log(lowest) ;
+            indexOfCompatible = lowest;
+            returnCompatible();
           }
-          console.log("\nCompatability Scores: ")
-          console.log(dbCompatabilityScore);
-          
+
+
+          function returnCompatible() {
+            console.log("You're most compatible with: ");
+            console.log(respondents[indexOfCompatible]);
+          }
+
 
         // Adds respondent data to respondents array in friends.js
         respondents.push(req.body);
