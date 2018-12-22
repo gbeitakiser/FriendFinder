@@ -212,7 +212,7 @@ $(".submit").on("click", function(event) {
             console.log(data.scores);
             $(".loading-screen").hide();
             $(".match-loaded").append('<h2>Your Match Is: ' + data.name + '</h2>');
-            $(".match-loaded").append('<img src="' + data.photo + '">');
+            $(".match-loaded").append('<img src="' + data.photo + '" alt="' + data.name + '">');
             $("#name").val("");
             $("#PhotoLink").val("");
             $(".custom-select-sm").val("");       
