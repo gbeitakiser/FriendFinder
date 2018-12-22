@@ -19,9 +19,6 @@ module.exports = function(app) {
         for (var i = 0; i < req.body.scores.length; i++) {
           newUserArr.push(+req.body.scores[i]);
         };
-            console.log("Number(s) entered by newUser (should come back as int): ");
-            console.log(newUserArr);
-            console.log("\n");
         
 
         // Compatability Checker
