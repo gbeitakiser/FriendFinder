@@ -15,24 +15,22 @@
     <title>Friend Finder!</title>
 </head>
 <body>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-  </button>
   
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Found Your Match!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="loading-screen">
+            <h1>Loading your match...</h1>
+          </div>
+          <div class="match-loaded"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -40,10 +38,9 @@
       </div>
     </div>
   </div>
-  <!--  -->
+  <!-- Modal End -->
 
-
-
+  <!-- Form -->
     <h3>Survey Questions</h3>
     <br>
     <h5><b>About You</b></h5>
@@ -86,8 +83,8 @@
         <option value="4">Four</option>
         <option value="5">Five (Strongly Agree)</option>
       </select>
-    </p>
-    <!-- <h2>Question 3</h2>
+    </p> -->
+    <h2>Question 3</h2>
     <p>You think pineapple should be on pizza</p>
     <p>
       <select class="custom-select-sm input" id="option3">
@@ -182,39 +179,44 @@
         <option value="4">Four</option>
         <option value="5">Five (Strongly Agree)</option>
       </select>
-    </p> -->
-      <button type="submit" class="btn btn-primary submit trigger">Submit</button>
+    </p>
+      <button type="submit" class="btn btn-primary submit trigger" data-toggle="modal" data-target="#myModal">Submit</button>
     </form>
 </body>
 </html>
 
-
 <script>
 $(".submit").on("click", function(event) {
     event.preventDefault();
-    $('#myModal').modal('show')
-    
-    // var newPerson = {
-    //     name: $("#name").val().trim(),
-    //     photoURL: $("#photolink").val().trim(),
-    //     scores: [
-    //         $("#option1").val(),
-    //         $("#option2").val(),
-            // $("#option3").val(),
-            // $("#option4").val(),
-            // $("#option5").val(),
-            // $("#option6").val(),
-            // $("#option7").val(),
-            // $("#option8").val(),
-            // $("#option9").val(),
-            // $("#option10").val()
-    //     ]
-    // };
-    // $.post("/api/friends", newPerson, function() {
-    //         $("#name").val("");
-    //         $("#PhotoLink").val("");
-    //         $(".custom-select-sm").val("");            
-    //     })
+
+    var newPerson = {
+        name: $("#name").val().trim(),
+        photoURL: $("#photolink").val().trim(),
+        scores: [
+            $("#option1").val(),
+            $("#option2").val(),
+            $("#option3").val(),
+            $("#option4").val(),
+            $("#option5").val(),
+            $("#option6").val(),
+            $("#option7").val(),
+            $("#option8").val(),
+            $("#option9").val(),
+            $("#option10").val()
+        ]
+    };
+    $.post("/api/friends", newPerson, function(data) {
+            $(".match-loaded").empty();
+            console.log(data.name);
+            console.log(data.photo);
+            console.log(data.scores);
+            $(".loading-screen").hide();
+            $(".match-loaded").append('<h2>Your Match Is: ' + data.name + '</h2>');
+            $(".match-loaded").append('<img src="' + data.photo + '">');
+            $("#name").val("");
+            $("#PhotoLink").val("");
+            $(".custom-select-sm").val("");       
+            })
 });
 
 
